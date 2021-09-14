@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ComposeWorkSearcher</string>
+
+    <string name="search">Поиск</string>
+    <string name="favorite">Избранное</string>
+    <string name="messages">Сообщения</string>
+    <string name="profile">Профиль</string>
+</resources>
