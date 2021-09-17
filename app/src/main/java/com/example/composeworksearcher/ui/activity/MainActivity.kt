@@ -1,17 +1,19 @@
 package com.example.composeworksearcher.ui.activity
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.example.composeworksearcher.data.MainScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.*
+import com.example.composeworksearcher.ui.MainScreenNavigation
 import com.example.composeworksearcher.ui.theme.MainTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,53 +29,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
+    @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
     @Composable
-    fun MainScreen() {
-        val navController = rememberNavController()
-
-        val bottomNavigationList = listOf(
-            "Some",
-            "body",
-            "once",
-            "told me"
-        )
-
-        Scaffold(
-            bottomBar = { MainScreenBottomBar(navController, bottomNavigationList) }
-        ) {
-            MainScreenAppNavigationConfiguration(navController)
+    fun MainScreenPreview() {
+        MainTheme {
+            MainScreen()
         }
-    }
-
-    @Composable
-    fun MainScreenAppNavigationConfiguration(navController: NavController) {
-
-    }
-
-    @Composable
-    fun MainScreenBottomBar(navController: NavController, items: List<MainScreen>) {
-        BottomNavigation {
-            val currentScreen = CurrentScreen(navController)
-
-            items.forEach {
-                BottomNavigationItem(
-                    icon = { Icon(it.iconId) },
-                    label = { Text(stringResource(id = it.resourceId))},
-                    selected = currentScreen == it.screenName,
-                    alwaysShowLabel = true,
-                    onClick = {
-                        if (currentScreen != it.screenName) {
-                            navController.navigate(it.screenName)
-                        }
-                    }
-                )
-            }
-        }
-    }
-
-    @Composable
-    fun CurrentScreen(navController: NavController): String? {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        return navBackStackEntry?.arguments?.getString(KEY_ROUTE)
     }
 }

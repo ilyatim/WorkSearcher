@@ -1,5 +1,6 @@
 package com.example.composeworksearcher.ui.theme
 
+import android.graphics.Color
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -13,9 +14,10 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = White,
+    primaryVariant = Green8FD389,
+    secondary = Teal200,
+    onPrimary = Gray808080
 
     /* Other default colors to override
     background = Color.White,
