@@ -15,7 +15,6 @@ import com.example.composeworksearcher.ui.*
 @Composable
 fun MainScreen() {
     val screenState = rememberMainScreenState()
-
     Scaffold(
         bottomBar = {
             if (screenState.shouldShowBottomBar) {

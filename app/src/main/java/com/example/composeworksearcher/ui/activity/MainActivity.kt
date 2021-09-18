@@ -19,22 +19,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MainTheme {
                 MainScreen()
             }
-        }
-    }
-
-    @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-    @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-    @Composable
-    fun MainScreenPreview() {
-        MainTheme {
-            MainScreen()
         }
     }
 }
