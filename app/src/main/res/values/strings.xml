@@ -5,4 +5,6 @@
     <string name="favorite">Избранное</string>
     <string name="messages">Сообщения</string>
     <string name="profile">Профиль</string>
+    <string name="search_hint">Ключевые слова для поиска</string>
+    <string name="label_search">Ключевые слова для поиска</string>
 </resources>
