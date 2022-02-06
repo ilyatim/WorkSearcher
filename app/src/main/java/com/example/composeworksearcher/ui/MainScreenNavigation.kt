@@ -59,7 +59,6 @@ fun MainScreenBottomBar(
     val section = items.first { it.screenRoute == currentRoute }
 
     BottomNavigation {
-
         items.forEach {
             val selected = section == it
             BottomNavigationItem(
@@ -91,3 +90,4 @@ private fun BottomNavigationPreview() {
         )
     }
 }
+

@@ -31,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composeworksearcher.R
 import com.example.composeworksearcher.ui.rememberMainScreenState
 import com.example.composeworksearcher.ui.theme.MainTheme
+import com.example.composeworksearcher.ui.theme.surfaceSearchBarBackground
 import com.example.composeworksearcher.ui.view.BaseSurface
 import com.example.composeworksearcher.ui.view.MaterialLoading
 import com.example.composeworksearcher.utils.SearchUiState
@@ -43,30 +44,34 @@ fun Search(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .wrapContentSize()
+            .padding(start = 12.dp, end = 12.dp, top = 16.dp, bottom = 16.dp)
+            .fillMaxWidth()
     ) {
         BaseSurface(
             contentAlignment = Alignment.Center,
+            color = MaterialTheme.colors.surfaceSearchBarBackground,
             modifier = Modifier
-                .padding(start = 20.dp, end = 10.dp, top = 20.dp)
+                .padding(end = 5.dp)
                 .height(54.dp)
-                .fillMaxWidth(0.8f)
+                .fillMaxWidth()
+                .weight(5f)
                 .clip(RoundedCornerShape(10.dp))
         ) {
             BaseSearchHint()
         }
         BaseSurface(
             contentAlignment = Alignment.Center,
+            color = MaterialTheme.colors.surfaceSearchBarBackground,
             modifier = Modifier
-                .padding(top = 20.dp, end = 20.dp)
                 .height(54.dp)
                 .width(54.dp)
+                .weight(1f)
                 .clip(RoundedCornerShape(10.dp))
         ) {
             Icon(
-                painterResource(id = R.drawable.ic_round_account_circle_24),
-                "",
-                tint = Color.White
+                painterResource(id = R.drawable.ic_baseline_list_24),
+                "list",
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }
@@ -101,13 +106,11 @@ fun BaseSearchHint(
             modifier = Modifier.padding(start = 10.dp),
             imageVector = Icons.Outlined.Search,
             contentDescription = stringResource(R.string.label_search),
-            tint = Color.White
         )
         Spacer(Modifier.width(8.dp))
         Text(
             modifier = Modifier.padding(end = 10.dp),
             text = searchText,
-            color = MaterialTheme.colors.primary
         )
     }
 }
@@ -117,8 +120,6 @@ fun BaseSearchHint(
 @Composable
 private fun BaseSearchPreview() {
     MainTheme {
-        BaseSurface {
-            BaseSearchHint()
-        }
+        Search()
     }
 }

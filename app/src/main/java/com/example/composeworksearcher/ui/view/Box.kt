@@ -27,7 +27,7 @@ fun BaseSurface(
     contentAlignment: Alignment = Alignment.Center,
     shape: Shape = RectangleShape,
     color: Color = MaterialTheme.colors.surface,
-    contentColor: Color = MaterialTheme.colors.onSecondary,
+    contentColor: Color = MaterialTheme.colors.onSurface,
     border: BorderStroke? = null,
     elevation: Dp = 4.dp,
     content: @Composable () -> Unit
