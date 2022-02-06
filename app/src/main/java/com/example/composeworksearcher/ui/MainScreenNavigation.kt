@@ -3,12 +3,10 @@ package com.example.composeworksearcher.ui
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +18,9 @@ import com.example.composeworksearcher.ui.screens.Messages
 import com.example.composeworksearcher.ui.screens.Profile
 import com.example.composeworksearcher.ui.screens.Search
 import com.example.composeworksearcher.ui.theme.MainTheme
+import com.example.composeworksearcher.ui.theme.bottomNavigationSelectedColor
+import com.example.composeworksearcher.ui.theme.bottomNavigationUnselectedColor
+
 
 enum class MainScreenNavigation(
     val screenRoute: String,
@@ -29,7 +30,7 @@ enum class MainScreenNavigation(
     Search("home/search", R.string.search, R.drawable.ic_round_search_24),
     Favorite("home/favorite", R.string.favorite, R.drawable.ic_round_star_24),
     Messages("home/messages", R.string.messages, R.drawable.ic_round_question_answer_24),
-    Profile("home/profile", R.string.profile,R.drawable.ic_round_account_circle_24)
+    Profile("home/profile", R.string.profile, R.drawable.ic_round_account_circle_24)
 }
 
 fun NavGraphBuilder.addHomeGraph(
@@ -70,7 +71,9 @@ fun MainScreenBottomBar(
                     if (currentRoute != it.screenRoute) {
                         navigateTo(it.screenRoute)
                     }
-                }
+                },
+                selectedContentColor = MaterialTheme.colors.bottomNavigationSelectedColor,
+                unselectedContentColor = MaterialTheme.colors.bottomNavigationUnselectedColor,
             )
         }
     }

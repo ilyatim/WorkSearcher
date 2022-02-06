@@ -8,6 +8,7 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -23,15 +24,17 @@ import kotlin.math.ln
 @Composable
 fun BaseSurface(
     modifier: Modifier = Modifier,
+    contentAlignment: Alignment = Alignment.Center,
     shape: Shape = RectangleShape,
-    color: Color = MaterialTheme.colors.uiBackground,
-    contentColor: Color = MaterialTheme.colors.textSecondary,
+    color: Color = MaterialTheme.colors.surface,
+    contentColor: Color = MaterialTheme.colors.onSecondary,
     border: BorderStroke? = null,
     elevation: Dp = 4.dp,
     content: @Composable () -> Unit
 ) {
     Box(
-        modifier = Modifier
+        contentAlignment = contentAlignment,
+        modifier = modifier
             .shadow(elevation = elevation, shape = shape, clip = false)
             .zIndex(elevation.value)
             .then(if (border != null) Modifier.border(border, shape) else Modifier)
