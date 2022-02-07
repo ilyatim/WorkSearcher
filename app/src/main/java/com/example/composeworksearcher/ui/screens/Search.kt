@@ -34,6 +34,7 @@ import com.example.composeworksearcher.ui.theme.MainTheme
 import com.example.composeworksearcher.ui.theme.surfaceSearchBarBackground
 import com.example.composeworksearcher.ui.view.BaseSurface
 import com.example.composeworksearcher.ui.view.MaterialLoading
+import com.example.composeworksearcher.ui.view.SearchList
 import com.example.composeworksearcher.utils.SearchUiState
 import com.example.composeworksearcher.utils.SearchViewModel
 
@@ -44,7 +45,7 @@ fun Search(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(start = 12.dp, end = 12.dp, top = 16.dp, bottom = 16.dp)
+            .padding(start = 12.dp, end = 12.dp, top = 8.dp, bottom = 16.dp)
             .fillMaxWidth()
     ) {
         BaseSurface(
@@ -76,16 +77,14 @@ fun Search(
         }
     }
 
+    val state = remember { viewModel.getUiState() }.collectAsState()
 
-    val state = remember { viewModel.state }.collectAsState()
-
-    when (state.value) {
+    when (val behaviour = state.value) {
         SearchUiState.Loading -> {
             MaterialLoading()
-            Log.d("sometag", "loading")
         }
         SearchUiState.Content -> {
-            Log.d("sometag", "content")
+            SearchList(/*behaviour.list*/)
         }
     }
     /*Surface(modifier = Modifier.fillMaxSize()) {

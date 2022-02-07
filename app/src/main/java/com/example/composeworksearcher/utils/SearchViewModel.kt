@@ -17,33 +17,41 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
 
-) : ViewModel(), CoroutineScope by MainScope() {
+) : BaseViewModel<SearchUiState, SearchUiState>() {
 
     init {
         launch {
             delay(2000)
-            _state.value = SearchUiState.Content
+            uiBehaviour.value = SearchUiState.Content
             delay(2000)
-            _state.value = SearchUiState.Loading
+            uiBehaviour.value = SearchUiState.Loading
         }
     }
 
-    val filters: List<Filter>
+    /*val filters: List<Filter>
         get() = _filters
     private val _filters: MutableList<Filter> = mutableListOf()
 
     val positions: List<Position>
         get() = _positions
-    private val _positions: MutableList<Position> = mutableListOf()
+    private val _positions: MutableList<Position> = mutableListOf()*/
 
-    val state: StateFlow<SearchUiState>
-        get() = _state.asStateFlow()
+    override val uiBehaviour: MutableStateFlow<SearchUiState> =
+        MutableStateFlow(SearchUiState.Loading)
 
-    private val _state: MutableStateFlow<SearchUiState> = MutableStateFlow(SearchUiState.Loading)
+    override fun collectAction(action: SearchUiState) {
+        when (action) {
+
+        }
+    }
 
 }
 
 sealed class SearchUiState {
     object Loading : SearchUiState()
     object Content : SearchUiState()
+}
+
+sealed class SearchAction {
+
 }
